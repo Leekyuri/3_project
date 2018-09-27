@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<style type="text/css">
+		* {margin:0; padding:0;}
+		body {width: 100vh; height: 100vh;
+			background: url('sky.jpg') 50% 50% no-repeat; background-size:cover;
+			}
+		img {width: inherit; position: absolute;}
+		.front {transform: translateZ(0.5px);}
+		.back {transform: translateZ(-0.5px);}	
+		#c1 {width: 270px; height: 631.17px; position:absolute; top: 52%; left: 30%;
+			transform: translateX(-50%) translateY(-50%); 
+			animation: card1 2.5s linear infinite;
+			animation-play-state: paused;
+			transform-origin: 50%;
+			transform-style: preserve-3d;}
+
+		#c2 {width: 270px; height: 631.17px; position:absolute; top: 52%; left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			animation: card1 2.5s linear infinite;
+			animation-play-state: paused;
+			transform-origin: 50%;
+			transform-style: preserve-3d;}
+		#c3 {width: 266px; height: 631.17px; position:absolute; top: 52%; left: 70%;
+			transform: translateX(-50%) translateY(-50%);
+			animation: card1 0.5s linear infinite;
+			animation-play-state: paused;
+			transform-origin: 50%;
+			transform-style: preserve-3d;}
+
+		@keyframes card1{
+			from{transform: translateX(-50%) translateY(-50%) rotateY(0deg);}
+			to{transform: translateX(-50%) translateY(-50%) rotateY(360deg);}
+		}
+
+		.iwrap {cursor: pointer;}
+
+	
+		video {position: absolute; left: 50%; top: 25%; transform:translateX(-50%); width: 1px; transition: all 2s;}
+	</style>
+</head>
+<body>
+	<div id="c1" class="iwrap">
+		<img class="front" src="card.png">
+		<img class="back" src="back.png">
+	</div>
+	<div id="c2" class="iwrap">
+		<img class="front" src="card2.png">
+		<img class="back" src="back2.png">
+	</div>
+	<div id="c3" class="iwrap">
+		<img class="front" src="card3.png">
+		<img class="back" src="back3.png">
+	</div>
+	
+	<video id="cam" src="cam.mp4" type="video/mp4";></video>
+	
+	<audio id="m">
+			<source src="m.mp3" type="audio/mpeg">
+		</audio>
+	<audio id="m2">
+			<source src="m2.mp3" type="audio/mpeg">
+		</audio>
+	<audio id="m3">
+			<source src="m3.mp3" type="audio/mpeg">
+		</audio>
+
+	<script type="text/javascript">
+
+		var toggle = "off";
+
+		c1.onclick = function(){
+					if(toggle == "off"){
+						c1.style.animationPlayState ="running";
+						toggle = "on";
+						m.play();
+					}else {
+						c1.style.animationPlayState = "paused";
+						toggle = "off";
+					}
+		}
+
+		c2.onclick = function(){
+					if(toggle == "off"){
+						c2.style.animationPlayState ="running";
+						toggle = "on";
+						m2.play();
+					}else {
+						c2.style.animationPlayState = "paused";
+						toggle = "off";
+					}
+		}
+
+		c3.onclick = function(){
+					if(toggle == "off"){
+						c3.style.animationPlayState ="running";
+						toggle = "on";
+						m3.play();
+						cam.setAttribute("src","cam.mp4")
+						cam.style.opacity=1;
+						cam.style.width="700px";
+						cam.play();
+
+
+					}else {
+						c3.style.animationPlayState = "paused";
+						toggle = "off";
+						cam.pause();
+						cam.style.opacity=0;
+						cam.currentTime=0;
+					}
+		}
+	</script>
+</body>
+</html>
